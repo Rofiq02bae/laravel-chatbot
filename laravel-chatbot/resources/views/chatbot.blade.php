@@ -361,9 +361,19 @@
                     const newsItem = document.createElement('div');
                     newsItem.className = 'news-item';
                     
-                    const newsTitle = document.createElement('div');
+                    // Buat link untuk judul berita
+                    const newsTitle = document.createElement('a');
+                    newsTitle.href = `/news/${news.id}`;
                     newsTitle.className = 'news-title';
+                    newsTitle.style.textDecoration = 'none';
+                    newsTitle.style.cursor = 'pointer';
                     newsTitle.textContent = news.title;
+                    newsTitle.addEventListener('mouseover', function() {
+                        this.style.textDecoration = 'underline';
+                    });
+                    newsTitle.addEventListener('mouseout', function() {
+                        this.style.textDecoration = 'none';
+                    });
                     
                     const newsSummary = document.createElement('div');
                     newsSummary.className = 'news-summary';
@@ -375,9 +385,27 @@
                     newsSource.style.marginTop = '5px';
                     newsSource.textContent = `Sumber: ${news.source} | ${news.category}`;
                     
+                    // Tambahkan tombol "Baca Selengkapnya"
+                    const readMoreBtn = document.createElement('a');
+                    readMoreBtn.href = `/news/${news.id}`;
+                    readMoreBtn.textContent = 'Baca Selengkapnya →';
+                    readMoreBtn.style.fontSize = '12px';
+                    readMoreBtn.style.color = '#007bff';
+                    readMoreBtn.style.textDecoration = 'none';
+                    readMoreBtn.style.fontWeight = 'bold';
+                    readMoreBtn.style.marginTop = '8px';
+                    readMoreBtn.style.display = 'inline-block';
+                    readMoreBtn.addEventListener('mouseover', function() {
+                        this.style.textDecoration = 'underline';
+                    });
+                    readMoreBtn.addEventListener('mouseout', function() {
+                        this.style.textDecoration = 'none';
+                    });
+                    
                     newsItem.appendChild(newsTitle);
                     newsItem.appendChild(newsSummary);
                     newsItem.appendChild(newsSource);
+                    newsItem.appendChild(readMoreBtn);
                     relatedNewsDiv.appendChild(newsItem);
                 });
                 
